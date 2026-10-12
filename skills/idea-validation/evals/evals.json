@@ -1,0 +1,41 @@
+{
+  "skill_name": "idea-validation",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I keep thinking about building a tool that turns messy meeting notes into a weekly status report for engineering managers. I have no idea if anyone would pay for it. Can you help me figure out whether this is worth building? I've got nothing yet, just the idea.",
+      "expected_output": "A validation plan with typed falsifiable assumptions (value/viability first), a cheap pre-validation ladder, a Mom Test interview guide, a competitor/alternative scan, and a go/no-go brief that stops short of making the decision. Should reference founder/validation/ outputs and not offer to build the app.",
+      "files": [],
+      "expectations": [
+        "Produces typed assumptions (value, viability, usability, feasibility) rather than a single verdict",
+        "Includes a Mom Test style interview guide asking about past behaviour, not hypotheticals",
+        "Names the human go/no-go boundary explicitly",
+        "Recommends the cheapest next test rather than jumping to build"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Here are my notes from 8 customer calls for my invoicing app for freelance designers. [pastes rambling notes] Everyone said it sounds great and several said they'd definitely use it. I think we're good to start building - thoughts?",
+      "expected_output": "The skill should push back on compliments-as-validation, separate interest from demand, restructure the raw notes into per-interview records with verbatim quotes and commitment levels, score the evidence via the script, and refuse to conclude 'proceed' while value/viability assumptions are untested. Should surface the case against.",
+      "files": [],
+      "expectations": [
+        "Challenges 'sounds great / would use' as weak evidence",
+        "Reorganises notes into per-interview records with commitment levels",
+        "Runs or describes scripts/evidence_scorecard.py and reports a verdict band",
+        "Does not endorse 'start building' on sentiment alone"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "should I build a niche CRM for wedding photographers? i saw a bunch of people complaining about it on reddit and i built crms before so it's easy for me",
+      "expected_output": "Recognises this as an idea-validation request even with casual phrasing. Distinguishes the founder's feasibility confidence from market risk, proposes the 2/20/200 ladder, maps incumbents/alternatives, designs a willingness-to-pay test, and produces a plan and go/no-go brief rather than a 'yes'.",
+      "files": [],
+      "expectations": [
+        "Identifies market risk (frequent, reachable, pays) as distinct from feasibility",
+        "Proposes a cheap pre-validation ladder before building",
+        "Designs a willingness-to-pay test, not just a waitlist",
+        "Ends with a brief and next test, deferring the decision to the founder"
+      ]
+    }
+  ]
+}

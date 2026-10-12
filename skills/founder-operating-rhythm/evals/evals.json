@@ -1,0 +1,53 @@
+{
+  "skill_name": "founder-operating-rhythm",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm a solo founder and I feel like I'm drowning. Every day I context-switch between support, writing code, answering DMs, and fiddling with pricing, and I end the week with nothing actually finished. Can you help me set up some kind of weekly system so I stop spinning?",
+      "expected_output": "A founder operating rhythm: a one-page weekly review template with three priorities and one action, a prioritisation method that picks the ONE thing (ICE/RICE, now/next/later), and concrete context-switching guidance (time-blocked deep work, capped hat switches per day, batching). Output should be files in founder/ops/ that the founder fills in, not an essay. Should treat activity as distinct from outcomes.",
+      "files": [],
+      "expectations": [
+        "Produces a weekly review template with three priorities and exactly one action",
+        "Recommends picking the ONE thing and deferring the rest to now/next/later",
+        "Addresses context-switching cost with batching or a hat-switch cap, not just willpower",
+        "Writes to founder/ops/ rather than only describing a process"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Quick check — I've got $120k in the bank, we're doing about $8k MRR and spending around $14k a month, revenue's growing maybe 6% a month. Am I going to make it or should I be worried?",
+      "expected_output": "Runs scripts/runway.py with the given inputs and reports net monthly burn, runway in months, the break-even month, a tax set-aside figure, and an explicit default alive / default dead verdict, with the plain-language sentence. Should also show the flat/declining case (e.g. --growth 0 or negative) so the downside is visible, and log the result to runway.csv. Should not present the projection as a promise.",
+      "files": [],
+      "expectations": [
+        "Runs scripts/runway.py and reports runway months, break-even month, and the set-aside",
+        "States a default alive / default dead verdict in plain language",
+        "Handles and shows the flat/declining growth case without a divide-by-zero error",
+        "Frames the output as a planning estimate, not a promise"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "The launch hype is over and nothing big has happened for a couple months. I'm still working most days but I've lost the buzz and I'm starting to wonder what the point is. Also I'm a non-US founder with a US LLC and someone mentioned some IRS form I've never heard of — is that a real thing?",
+      "expected_output": "Handles both: (a) the quiet-middle sustainability problem with burnout guardrails, small checkpoints, and a definition of a good week that does not depend on a launch; (b) the ops/legal item by naming the Form 5472 information return and its penalty as a prompt to consult a professional who handles non-US owners of US LLCs. Must clearly state it is not legal or tax advice and route to a professional rather than giving filing instructions.",
+      "files": [],
+      "expectations": [
+        "Names the quiet middle and builds small checkpoints / guardrails rather than 'push harder'",
+        "Recognises the Form 5472 obligation for a non-US owner of a US LLC and its penalty",
+        "Explicitly refuses to give binding legal or tax advice and routes to a professional",
+        "Does not fabricate filing instructions or figures beyond a loose attribution"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "We just crossed $20k MRR and I keep getting asked when I'll make my first hire. Honestly hiring scares me — is it even the right move yet? Should I just spend that money on AI agents instead?",
+      "expected_output": "Frames agent stack vs first hire as a decision at the margin: an agent stack (several specialised agents plus tooling) is cheap, fast to change, and does not onboard, while a first hire adds judgement, relationships, and accountability but is a fixed cost you cannot un-commit in a bad month. Should not declare a winner; should connect the choice back to the next bottleneck and to runway. Should also mention keeping the decision in the decision log, typed Type 1 or Type 2.",
+      "files": [],
+      "expectations": [
+        "Frames the choice as agent stack vs first hire rather than defaulting to hiring",
+        "Notes that an agent stack is variable / swappable and a hire is a fixed cost",
+        "Ties the decision to the next bottleneck and to runway, not to a fixed MRR rule",
+        "Does not tell the founder which to choose; logs it as a decision with a type"
+      ]
+    }
+  ]
+}

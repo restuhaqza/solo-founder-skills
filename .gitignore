@@ -1,0 +1,17 @@
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node (some skills may ship JS tooling later)
+node_modules/
+
+# Workspaces produced when the skills are actually used
+founder/
+*-workspace/

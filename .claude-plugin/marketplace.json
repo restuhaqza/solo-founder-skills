@@ -1,0 +1,26 @@
+{
+  "name": "solo-founder-skills",
+  "owner": {
+    "name": "Restu Haqza"
+  },
+  "metadata": {
+    "description": "Agent Skills that turn a general-purpose agent into a solo-founder operator.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "founder-core",
+      "description": "The solo-founder core pack: validate an idea, scope an MVP, price it, launch it, measure it, and run the weekly operating rhythm.",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/idea-validation",
+        "./skills/mvp-scoping",
+        "./skills/pricing-strategy",
+        "./skills/go-to-market-launch",
+        "./skills/product-metrics",
+        "./skills/founder-operating-rhythm"
+      ]
+    }
+  ]
+}

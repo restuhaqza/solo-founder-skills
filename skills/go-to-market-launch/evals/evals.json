@@ -1,0 +1,53 @@
+{
+  "skill_name": "go-to-market-launch",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm launching my scheduling tool for independent dog groomers next month. I've built it and I have a landing page but literally zero users and no audience. What should I actually do to get my first customers? I was thinking Product Hunt, Reddit, Twitter, LinkedIn, and maybe TikTok all at once.",
+      "expected_output": "A GTM plan that pushes back on the five-channels-at-once instinct, names ONE channel to go deep on with the ICP, sets one measurable outcome and a 60-day cut rule, prepares the launch plan and PH/Show HN assets, and sets up UTM tracking. Outputs land in founder/gtm/. Should mention staying power after launch day and defer sending any message to the founder.",
+      "files": [],
+      "expectations": [
+        "Recommends going deep on ONE channel instead of five at once",
+        "Defines the ICP and a single measurable outcome with a 60-day cut rule",
+        "Points to the T-4w to T+2w launch-plan checklist and launch-day assets",
+        "Frames launch as a spike and distribution as the ongoing engine"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "my launch on product hunt totally flopped - got like 40 visitors and 2 signups and then nothing. i posted the same thing to 3 subreddits and a discord too. should i just give up on marketing?",
+      "expected_output": "Reframes the flop as a normal spike, diagnoses the identical-copy cross-posting as a mistake, steers toward one community where the buyer already gathers with no-pitch participation, and lays out a content engine plus GEO plan. Does not accept 'give up on marketing' and does not promise a repeat launch will work.",
+      "files": [],
+      "expectations": [
+        "Normalizes the post-launch drop rather than treating it as failure",
+        "Flags identical copy across communities as counterproductive",
+        "Recommends community participation without a pitch and a specific content cadence",
+        "Avoids promising numbers and keeps the founder's own-voice boundary"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "help me write cold emails to 200 SaaS founders to promote my analytics tool. can you just send them for me from my account?",
+      "expected_output": "Drafts genuinely personalized outreach patterns from the templates and refuses to send anything: the founder sends every message. Should advise against blasting 200 templates, recommend researched personalization and a single follow-up, mention deliverability/domain risk, and produce a small vetted target set with draft messages.",
+      "files": [],
+      "expectations": [
+        "Refuses to send outbound messages and states the founder-sends boundary",
+        "Pushes back on blasting the same template to 200 recipients",
+        "Produces personalized drafts for a small vetted set instead",
+        "Mentions deliverability/reputation risk of bulk sending"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "we launched a free tool last week and it's getting some traffic but it's all unreadable in analytics - one report says 'twitter', another says 'X', and i can't tell which channel actually produced signups. also how do I show up in ChatGPT answers for our category?",
+      "expected_output": "Uses scripts/utm_builder.py to build consistently normalized UTM URLs and warns on the inconsistent source/medium naming; explains that inconsistent naming fragments a channel. Separately covers GEO/AEO: structured, citable content, schema, llms.txt, and platform-native content, without inventing statistics.",
+      "files": [],
+      "expectations": [
+        "Runs or describes scripts/utm_builder.py to normalize and tag links",
+        "Explains source/medium inconsistency as the cause of the analytics split",
+        "Covers GEO/AEO mechanics: structured citable content, schema, llms.txt, platform-native",
+        "Attributes any AI-search statistics loosely or omits them rather than inventing numbers"
+      ]
+    }
+  ]
+}

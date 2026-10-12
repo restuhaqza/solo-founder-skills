@@ -1,0 +1,13 @@
+id,name,impact,confidence,effort,must_have,notes
+F1,"Sign up and create an account",5,5,1,yes,"use a managed auth provider, not custom"
+F2,"Create and send an invoice",5,5,3,yes,"the single core action of the product"
+F3,"Client pays online by card",5,4,2,yes,"Stripe Checkout; no custom payments"
+F4,"See which invoices are unpaid",5,5,2,yes,"the core loop's feedback signal"
+F5,"Email the invoice to the client",4,5,1,yes,"the delivery mechanism the core action needs"
+F6,"Recurring monthly invoices",4,3,3,no,"high value, but v1 can be manual"
+F7,"Branded PDF with logo + colours",3,4,2,no,"nice-to-have polish"
+F8,"Multi-currency support",2,2,4,no,"unvalidated guess; real FX edge cases"
+F9,"Team seats and roles",2,3,5,no,"v2 feature; solo buyers do not need it yet"
+F10,"Tax/VAT calculation per region",3,2,4,no,"risk + compliance; defer to an accountant"
+F11,"Expense tracking",1,2,4,no,"different product, not this core loop"
+F12,"Automated late-payment reminders",4,3,3,no,"strong follow-up after the first invoices go out"

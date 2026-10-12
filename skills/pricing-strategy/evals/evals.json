@@ -1,0 +1,53 @@
+{
+  "skill_name": "pricing-strategy",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I built a Chrome extension that turns any article into a clean PDF and I want to charge $5 one-time for it. My friends say that's a great deal. How should I price this?",
+      "expected_output": "The skill reasons from value created and the alternative (manual copy-paste, other read-it-later tools), challenges the $5 price as likely below the solo support-burden floor, picks a value metric, chooses a model (one-time or credits might genuinely fit a cold-start extension), proposes 2-3 good-better-best tiers rather than one price, and lays out a willingness-to-pay step. Should not simply endorse $5 because friends liked it.",
+      "files": [],
+      "expectations": [
+        "Prices on value created rather than cost or friend approval",
+        "Flags pricing too low and the roughly $20/mo support-burden floor",
+        "Proposes 2-3 good-better-best tiers anchored on a value metric",
+        "Recommends a willingness-to-pay test rather than accepting the guess"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "My invoicing tool for freelance designers has 40 happy users on a $15/month plan but conversion is flat and I'm drowning in support. Should I switch to a one-time price, or just raise the subscription?",
+      "expected_output": "The skill uses the model chooser to compare subscription vs one-time/credits against the product's recurring value and support overhead, reasons about whether the value genuinely recurs, checks the $15 price against the solo support burden, and produces a pricing brief with a value metric, tiers, and a tested band. It should surface the migration decision for existing customers as the founder's call.",
+      "files": [],
+      "expectations": [
+        "Compares subscription vs one-time using buying behaviour and support overhead, not hype",
+        "Names a value metric and expresses tiers as allowances of it",
+        "Flags the low recurring price against the solo support burden",
+        "Defers the existing-customer price change to the founder"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We're raising prices next month. Can you just update all our current paying customers to the new plan automatically and send them the new invoices?",
+      "expected_output": "The skill declines to move existing customers unilaterally: it drafts the migration and grandfathering options (grandfather forever, window, migrate at renewal, legacy-tier), drafts the notice, but explicitly hands the decision to the founder and never applies it automatically. It may still prepare the new tier structure and pricing page for new customers.",
+      "files": [],
+      "expectations": [
+        "Refuses to apply price changes to existing customers automatically",
+        "Presents grandfathering/migration options rather than one answer",
+        "States the human-approval boundary for pricing changes to existing customers",
+        "Still prepares the new-customer tiers and page"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "here are 22 responses from my pricing survey [pastes four numbers per person]. what should I charge for my project-management app for small agencies?",
+      "expected_output": "The skill recognizes a Van Westendorp willingness-to-pay request, normalizes the answers into too_cheap/cheap/expensive/too_expensive rows, runs scripts/van_westendorp.py, reports OPP, IDP/IPP, PMC, PME and the acceptable range [PMC, PME] as a band to test (not a single number), checks the result against competitor prices and the value metric, and proposes tiers. Should note the sample is near the warning threshold rather than treating it as definitive.",
+      "files": [],
+      "expectations": [
+        "Runs or describes scripts/van_westendorp.py on the four answers per respondent",
+        "Reports the acceptable range [PMC, PME] as a band rather than one price",
+        "Cross-checks the band against alternatives and the value metric",
+        "Notes small-sample uncertainty instead of treating the numbers as a decision"
+      ]
+    }
+  ]
+}

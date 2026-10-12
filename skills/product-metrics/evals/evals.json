@@ -1,0 +1,53 @@
+{
+  "skill_name": "product-metrics",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I run a small SaaS doing about $4k MRR and I've got Mixpanel, GA4 and Hotjar but honestly I still don't know what's actually moving the needle. What should I be tracking every week?",
+      "expected_output": "Recognises a metrics/analytics request. Recommends a north star (revenue/MRR) plus 2-4 input metrics, a metric tree, and a single activation event, and pushes back on the tool sprawl ('42 metrics, learning nothing'). Produces a metrics spec in founder/metrics/ and a weekly digest cadence rather than another dashboard.",
+      "files": [],
+      "expectations": [
+        "Defaults the north star to revenue / MRR and names 2-4 input metrics",
+        "Rejects the many-tools/many-metrics sprawl and cuts to the few numbers that change decisions",
+        "Defines one specific activation event rather than using signup",
+        "Points to founder/metrics/ outputs and the weekly digest script"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "can you do my monday business review? here's the csv of the last few weeks: date,mrr,new_customers,churned_mrr,failed_payments_mrr,active_users\n2026-03-02,3410,8,140,50,470\n2026-03-09,3590,8,160,48,505\n2026-03-16,3740,9,170,52,540\n2026-03-23,3900,9,165,50,575\n2026-03-30,4050,10,180,58,610\n2026-04-06,4140,8,290,85,600",
+      "expected_output": "Writes the CSV to founder/metrics/metrics.csv and runs scripts/weekly_digest.py. Reports the digest with period-over-period deltas, flags the adverse movers (churned_mrr and failed_payments_mrr spiking, new_customers down), splits the involuntary churn share from failed_payments_mrr / churned_mrr, and ends with exactly ONE recommended action.",
+      "files": ["scripts/weekly_digest.py"],
+      "expectations": [
+        "Runs the digest script on the CSV rather than eyeballing the numbers",
+        "Treats churn / failed payments as good-when-down and ranks them as adverse movers",
+        "Reports the inferred involuntary-churn share from failed_payments_mrr",
+        "Ends in exactly one recommended action, not a list of observations"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "our churn went from 4% to 6% this month and we're panicking. customers keep saying 'too expensive' on the cancel survey. what do we do?",
+      "expected_output": "Reframes churn as often an activation problem ('most churn happens before value'), insists on splitting voluntary vs involuntary churn (failed cards are commonly 20-40% of total), checks the dunning setup and recovery rate, reads the retention cohort curve, and defines an activation event. Recommends one action via the theory of constraints, not a scattergun of retention tactics.",
+      "files": [],
+      "expectations": [
+        "Splits churn into voluntary vs involuntary before proposing fixes",
+        "Calls out dunning / failed payments as the highest-ROI solo lever",
+        "Notes that most churn happens before value, so onboarding/activation comes first",
+        "Recommends exactly one action against the single binding constraint"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "how do I actually pick an 'activation' metric for my tool? everyone online says just use signups and I'm not sure.",
+      "expected_output": "Explains that activation is not signup — it is the specific countable action that correlates with a user staying (Slack-style volume, Dropbox-style second device, Figma-style first files given only as illustrations, not copied numbers). Shows how to derive it from retained-vs-churned week-one behaviour, writes it as one sentence, and instruments it with time-to-value.",
+      "files": ["references/metric-tree.md"],
+      "expectations": [
+        "Distinguishes activation from signup explicitly",
+        "Describes the method for finding it (retained vs churned week-one behaviour) rather than hardcoding a number",
+        "Frames activation examples as illustrations to reason by analogy",
+        "Connects activation to time-to-value and the onboarding sequence"
+      ]
+    }
+  ]
+}

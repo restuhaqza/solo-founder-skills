@@ -1,0 +1,4 @@
+date,assumption_id,source,quote_or_observation,commitment_level,money_amount,note
+2026-01-14,V1,mom-test-interview-03,"We spend about 6 hours a week on this, mostly copy-pasting",behaviour,0,"describes the workaround unprompted"
+2026-01-15,V2,landing-page-deposit,"paid $49 pre-order",payment,49,"first deposit"
+2026-01-15,B1,mom-test-interview-05,"$30/mo is nothing if it saves me a day",opinion,0,"hypothetical - do not count as strong"

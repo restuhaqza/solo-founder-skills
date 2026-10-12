@@ -1,0 +1,44 @@
+{
+  "skill_name": "mvp-scoping",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I validated an idea: an invoicing app for freelance designers who are tired of chasing payments. I'm ready to build now and I have a huge list of features I want — recurring invoices, multi-currency, team seats, a mobile app, branded PDFs, automated reminders, expense tracking. Where do I even start?",
+      "expected_output": "The skill names the single core action and core loop first, then writes observable exit criteria BEFORE discussing features. It captures the whole feature list into the backlog CSV shape, scores it with scripts/scope_score.py (impact x confidence / effort), draws a 90/10 cut, and produces a short anti-scope list with triggers. It should push back on the marathon instinct and not endorse building recurring invoices / team seats / mobile in v1.",
+      "files": [],
+      "expectations": [
+        "Names a single core action and core loop before features",
+        "Writes observable exit criteria before any build discussion",
+        "Uses scripts/scope_score.py and reports a v1 cut plus % of value retained",
+        "Produces an explicit out-of-scope list with re-entry triggers",
+        "Defers recurring invoices, team seats, and mobile app to v2"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "My MVP spec is getting long — I'm 400 lines in and I keep thinking of things we'll need eventually, like SSO, an admin dashboard, webhooks, and our own login so we're not locked into a vendor. Should I just build it all now so we don't have to redo it later?",
+      "expected_output": "Recognises this as scope creep and the 'we'll need it eventually' failure mode. Argues for buying auth (no custom login for v1), a boring stack (Next.js + Supabase + Vercel + Stripe or similar), and moving SSO/admin/webhooks to the anti-scope list with triggers. Reframes 'build it so we don't redo it' as the MVP marathon and recommends a walking skeleton then small verifiable slices.",
+      "files": [],
+      "expectations": [
+        "Flags 'we'll need it eventually' and the MVP marathon explicitly",
+        "Rejects custom auth/login for v1 and recommends a managed provider",
+        "Recommends a boring stack via references/boring-stack.md",
+        "Moves SSO/admin/webhooks to the anti-scope list with triggers",
+        "Proposes a walking skeleton and small verifiable slices instead of a big upfront build"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "here's my idea: a tool that turns a screenshot into a shareable link with comments. am i ready to start coding? what's the mvp?",
+      "expected_output": "Treats this as an mvp-scoping request even with casual phrasing. Names the core action and loop, writes observable exit criteria before coding, produces a small v1 feature set scored via the script, picks a build/buy/no-code stack decision, and hands a build sequence to a coding agent. Should answer 'what's the MVP' with a scoped spec, not a feature list.",
+      "files": [],
+      "expectations": [
+        "Identifies the core action and core loop from a casual idea statement",
+        "Writes observable exit criteria before proposing to code",
+        "Scores candidate features with scripts/scope_score.py",
+        "Produces an MVP spec template output and a build sequence",
+        "States the hand-off to pricing-strategy and go-to-market-launch"
+      ]
+    }
+  ]
+}

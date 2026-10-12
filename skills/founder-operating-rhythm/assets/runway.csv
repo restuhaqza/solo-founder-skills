@@ -1,0 +1,7 @@
+month,cash,monthly_revenue,monthly_costs,net_monthly_burn,growth_pct,runway_months,break_even_month,tax_set_aside,runway_months_after_tax,verdict,note
+2026-01,120000,8000,14000,6000,6.0,20.0,10,2400,14.3,DEFAULT ALIVE,"first honest look at the numbers"
+2026-02,114000,8500,14000,5500,6.2,20.7,9,2550,13.1,DEFAULT ALIVE,
+2026-03,,,,,,,,,,,
+2026-04,,,,,,,,,,,
+2026-05,,,,,,,,,,,
+2026-06,,,,,,,,,,,
