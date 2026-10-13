@@ -1,0 +1,53 @@
+{
+  "skill_name": "fundraising-and-investor-updates",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I've got about 40 paying customers, $3.2K MRR, and I'm growing slowly. An angel offered me $250K on a $2M pre-money valuation, and a couple of friends say I should take it and 'go full time'. Should I raise? I don't really have a plan for the money yet.",
+      "expected_output": "Frames raising as a trade against the milestone it would buy, pushes back on raising without a defined use of funds, lays out the raise-vs-bootstrap comparison (including the option of not raising / a lean agent-and-tools stack plus time), and asks for the provable milestone and the runway it needs. Produces a raise memo with a decision section, and names the human boundary on the raise/no-raise call.",
+      "files": [],
+      "expectations": [
+        "Pushes back on raising without a milestone or a use of funds",
+        "Frames bootstrap vs raise as an honest trade rather than a default either way",
+        "Asks for the provable milestone and the runway it must buy",
+        "Leaves the raise/no-raise decision to the founder"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Help me put together a deck and data room for a seed round. Here's what I've got: a B2B tool for dental clinics, ~$11K MRR, 30 customers, churn is around 4%/mo, one main channel (cold email). I've never raised before and I don't know what investors will ask for.",
+      "expected_output": "Builds the deck from the outline (problem, insight, product, traction, market, model, GTM, team, ask, use of funds) with the real numbers given, notes what traction to show at seed stage, and produces the data-room checklist split into essential vs as-asked. Warns against inventing or dressing up numbers, and flags the missing milestone/ask. Does not fabricate market stats.",
+      "files": [],
+      "expectations": [
+        "Follows the deck narrative order and places the real traction where it belongs",
+        "Produces a data-room checklist marked essential vs as-asked",
+        "Flags the missing milestone and ask rather than inventing them",
+        "Does not invent market statistics or traction it was not given"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "An investor wants to put in $1.5M at a $6M pre-money and is asking for a 12% option pool. What does that actually leave me and my co-founder? And what if we raise another round in a year at $20M pre on $5M — how much of the company do I still have?",
+      "expected_output": "Runs scripts/raise_math.py with --option-pool 12 and --cascade 20000000 5000000 (or describes the run precisely), reports post-money, the investor's ownership, the founder dilution split (investor + pool), price per share, shares issued, the before/after cap table, and cumulative founder ownership after the second round. Explains the option-pool shuffle and the second-round dilution, and routes the actual term sheet wording to a lawyer.",
+      "files": [],
+      "expectations": [
+        "Uses the raise_math.py script rather than doing only hand-waving math",
+        "Explains that the option pool is created pre-money and dilutes existing holders",
+        "Reports cumulative founder ownership after the cascade round",
+        "Routes term-sheet terms to a professional and gives no investment advice"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "It's investor update time and honestly it was a rough month — churn doubled, our biggest customer said they might leave, and we missed the launch date. I'm tempted to skip this month's email and send the next one when things look better. Can you help me write it?",
+      "expected_output": "Affirms updating on bad news as the golden rule, drafts the monthly update in the standard same-shape format with the numbers, an honest lowlight, a short plan, and exactly one ask, in the founder's voice. Refuses to help skip or soften the update. Notes the founder sends it.",
+      "files": [],
+      "expectations": [
+        "Argues against skipping and for reporting the miss early with a plan",
+        "Uses the standard monthly update shape with numbers, lowlight, plan, and one ask",
+        "Recommends sending on schedule regardless of the bad news",
+        "Reminds that the founder writes and sends the update"
+      ]
+    }
+  ]
+}

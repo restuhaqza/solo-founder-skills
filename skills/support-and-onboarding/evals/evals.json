@@ -1,0 +1,57 @@
+{
+  "skill_name": "support-and-onboarding",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I launched my SaaS six weeks ago and now I'm spending 2-3 hours every day answering support emails. I check my inbox constantly and I can't get any building done. How do I handle support without it taking over my whole day?",
+      "expected_output": "A support system built on a shared inbox, a <=24h first-response target, macros, and two fixed triage blocks a day instead of constant checking, with billing/cancellation handled immediately. Should explain why batching beats willpower and produce macros from the user's real ticket patterns rather than assuming. Should land outputs in founder/support/ and not offer to send replies on the founder's behalf.",
+      "files": [],
+      "expectations": [
+        "Recommends a shared inbox and two scheduled triage blocks per day rather than checking constantly",
+        "Sets a specific first-response target and says to handle billing/cancellation immediately",
+        "Explains batching beats discipline for protecting deep work",
+        "Produces macros derived from the founder's actual ticket patterns, not invented ones",
+        "Names the human boundary that the founder sends the messages"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Lots of people sign up for my habit tracker but almost none of them come back after day one. I don't think they ever really use it. What am I doing wrong?",
+      "expected_output": "The skill should reframe this as an activation problem, not an acquisition one: most churn happens before value. It should help define the single activation event, measure time-to-value, and generate a Day 0/1/3/7/30 onboarding-to-aha sequence via scripts/onboarding_sequence.py where every step drives one action toward activation. Should warn against optimising signups while activation is low and against checking a cancellation survey before first-session behaviour.",
+      "files": [],
+      "expectations": [
+        "Identifies the problem as activation, not acquisition",
+        "Asks for or defines a single countable activation event and time-to-value",
+        "Runs or describes scripts/onboarding_sequence.py to produce a Day 0/1/3/7/30 sequence",
+        "Keeps one action per email driving toward the activation event",
+        "Warns that more signups into weak onboarding just fill a leaky bucket"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "should I wire up an AI chatbot to answer my customer support? i saw a tool that does it automatically and it's cheap. i have like 30 paying customers right now",
+      "expected_output": "Push back: at ~30 customers a chatbot hides the exact confusion the founder needs to learn from, and practitioner guidance is to resist AI chatbots and NPS automation until well past ~200 customers. Recommend doing support manually, reading every conversation, and building macros/docs from real tickets first. Also note the billing/cancellation exception and that the founder sends the replies.",
+      "files": [],
+      "expectations": [
+        "Advises against adding a chatbot at this stage",
+        "Explains a chatbot deletes product-research signal at low volume",
+        "Cites the ~200 customer threshold before chatbot/NPS automation",
+        "Proposes macros and help docs from real tickets instead",
+        "Keeps the human in the loop for sending replies and handling billing"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "I get buried in feature requests and I keep dropping things. People email me constantly asking for stuff. How do I decide what to actually build without just building whatever the last person shouted about, and how do I stop it eating my time?",
+      "expected_output": "Score each request by Impact x Votes / Effort (effort including the solo maintain-and-support tail), mine ticket patterns so a question asked ten times becomes a UX fix or a doc rather than ten replies, and synthesise trends rather than chasing the loudest voice. Should log to founder/support/feedback.md and hand patterns to mvp-scoping. Should include at-risk detection and save playbooks as the retention counterpart.",
+      "files": [],
+      "expectations": [
+        "Applies an Impact x Votes / Effort score to feature requests",
+        "Distinguishes the loudest voice from a genuine trend",
+        "Turns repeated questions into a macro, a doc, or a product fix",
+        "Includes at-risk detection (no core action in 14-21 days) and save playbooks",
+        "Hands the revealed product fixes to mvp-scoping and numbers to product-metrics"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "skill_name": "experiments-and-growth",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "My signups are growing but revenue is flat. I feel like I should be doing more marketing, but I'm not sure what to do. I've been posting on Twitter, LinkedIn, and Reddit and running some SEO too. Help me figure out how to grow.",
+      "expected_output": "Diagnoses the binding constraint from the funnel rather than jumping to marketing; recognises that flat revenue with growing signups points at retention or activation, not acquisition; pushes back on spreading across four channels; proposes one experiment at a time with a hypothesis, a single metric, a pre-committed decision rule, and a 60-day channel cut rule. References founder/growth/ outputs.",
+      "files": [],
+      "expectations": [
+        "Names the binding constraint from funnel reasoning rather than defaulting to acquisition",
+        "Pushes back on spreading across Twitter/LinkedIn/Reddit/SEO at once",
+        "Writes an experiment as a single falsifiable hypothesis with one metric",
+        "Applies or mentions the 60-day channel cut rule"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We ran an onboarding change. Activation went from 31% to 33% in the first three days. Should we ship it to everyone and move on?",
+      "expected_output": "Flags the tiny sample and the early peek; explains that a 2-point move in 3 days is not a win; asks for the pre-committed MDE and sample size or computes one with scripts/experiment_log.py --sample-size; recommends ITERATE or continuing to the planned duration rather than scaling; keeps one primary metric and notes guardrails.",
+      "files": [],
+      "expectations": [
+        "Identifies the early stop / peeking problem",
+        "Does not accept a small short-window move as a winner",
+        "References sample size or minimum detectable effect",
+        "Logs the experiment with a status and requires a recorded decision"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "here's my experiment log for the last quarter [pastes a CSV]. can you tell me what worked and what to do next?",
+      "expected_output": "Runs or describes scripts/experiment_log.py on the pasted log, reports status counts, checks each finished experiment against its target given direction, recommends SCALE / ITERATE / KILL, flags finished experiments missing a result or decision and any running past its end date, and ends in the single next action. Should not invent statistics beyond the script's formula.",
+      "files": [],
+      "expectations": [
+        "Uses the experiment_log.py behaviour (status counts, per-experiment target check, scale/iterate/kill)",
+        "Flags experiments with no result or no decision recorded",
+        "Ends with exactly one recommended next action",
+        "Does not report a winner for an experiment with an abandoned or missing-result status"
+      ]
+    }
+  ]
+}

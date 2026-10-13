@@ -1,0 +1,53 @@
+{
+  "skill_name": "solo-founder-os",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I've got an idea for a tool that helps independent yoga studios manage their class schedules and memberships. I haven't built anything, don't have a name for it, and honestly have no idea where to start. Where do I begin?",
+      "expected_output": "Recognises an ambiguous cold-start request, bootstraps the shared workspace (creates founder/ folders and founder/context.md from assets/context.md with the product one-liner, ICP, stage, etc. filled in from what is known), then diagnoses the job as validation and routes to an idea-validation skill with the single next artifact founder/validation/go-no-go.md. Should NOT start validating the idea itself or produce a go/no-go brief.",
+      "files": [],
+      "expectations": [
+        "Creates the founder/ folder tree and founder/context.md before doing anything else",
+        "Routes to exactly ONE skill (idea-validation), not a menu of options",
+        "Names the single next artifact (founder/validation/go-no-go.md) and explains why",
+        "Does not perform the validation work itself (no assumptions, interviews, or scorecard)"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We've been live for four months and have about 200 signed-up users, but almost nobody pays — maybe two people. How much should I charge? I keep going back and forth on $19 vs $29.",
+      "expected_output": "Notices that the literal question (price) is not the real job: with 200 signups and ~2 payers, the underlying problem is demand/willingness-to-pay and activation, not the number on the price tag. Diagnoses the real job, states that pricing is premature without evidence anyone will pay, and routes to the right owner (idea-validation for willingness-to-pay evidence, or product-metrics for the activation gap) rather than pricing-strategy. Explains the correction rather than just answering the price question.",
+      "files": [],
+      "expectations": [
+        "Challenges the framing that this is a pricing question",
+        "Identifies the underlying job as willingness-to-pay / activation, not price level",
+        "Routes to a single owning skill with a named next artifact rather than answering $19 vs $29",
+        "States plainly why the literal question is the wrong one"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I've been using the founder skills for a while and I've lost track of what I've actually finished. Can you give me the lay of the land — what's done and what am I missing?",
+      "expected_output": "Runs scripts/founder_status.py against the founder/ directory and reports the checklist of expected artifacts as present / empty / missing, the completion percentage, and the single most-in-need-of-attention next step chosen by lifecycle order. Reports the gaps but does not produce the missing artifacts itself; hands the next step to the owning skill.",
+      "files": [],
+      "expectations": [
+        "Runs scripts/founder_status.py rather than guessing at the workspace contents",
+        "Reports each artifact as present / empty / missing with a completion percentage",
+        "Names exactly one next step, ordered by the lifecycle sequence",
+        "Does not author the missing artifacts itself — routes to the owning skill"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "growth has totally stalled and I'm not sure if I should be looking at my traffic, my onboarding, or my pricing. also people keep cancelling and I don't really know why. what should I even be tracking?",
+      "expected_output": "Diagnoses this as a metrics/retention job, not a distribution or pricing job, and routes to product-metrics with the single next artifact founder/metrics/metrics-spec.md. Should note that churn needs to be split into voluntary vs involuntary (failed payments) and that the metric set should be small and decision-driving. Should not build a full dashboard or enumerate 30 metrics.",
+      "files": [],
+      "expectations": [
+        "Routes to exactly one skill (product-metrics) and names founder/metrics/metrics-spec.md",
+        "Frames churn as something to split (voluntary vs involuntary), not a single number",
+        "Keeps the metric set small and tied to decisions rather than listing many metrics",
+        "Does not attempt to solve the pricing or distribution question in this skill"
+      ]
+    }
+  ]
+}

@@ -118,9 +118,12 @@ founder/
 ├── validation/         # idea-validation
 ├── product/            # mvp-scoping
 ├── pricing/            # pricing-strategy
-├── gtm/                # go-to-market-launch
+├── gtm/                # positioning-and-messaging, go-to-market-launch, content-and-seo-engine
 ├── metrics/            # product-metrics
-└── ops/                # founder-operating-rhythm
+├── growth/             # experiments-and-growth
+├── support/            # support-and-onboarding
+├── ops/                # founder-operating-rhythm
+└── fundraising/        # fundraising-and-investor-updates
 ```
 
 If `founder/context.md` is missing, create it (product one-liner, ICP, stage, north-star

@@ -1,0 +1,7 @@
+id,name,hypothesis,metric,baseline,target,direction,start,end,result,status,decision
+E1,First-session activation,"If we move the activation step into the first session, then activation_rate will rise to 0.40, because users currently drop off before reaching value",activation_rate,0.31,0.40,up,2026-06-01,2026-06-21,0.44,done,SCALE
+E2,Signup social proof,"If we add customer logos above the signup form, then trial_conversion will rise by 15% relative, because visitors do not yet trust the product",trial_conversion,0.080,0.092,up,2026-06-22,2026-07-12,0.088,done,ITERATE
+E3,Cold email sequence,"If we run a 3-email cold sequence, then qualified_leads_per_week will rise to 20, because a follow-up recovers the first-email drop-off",qualified_leads_per_week,12,20,up,2026-07-01,2026-08-30,13,done,KILL
+E4,Fewer onboarding steps,"If we cut onboarding from 6 steps to 3, then day1_activation will rise to 0.38, because length is the main drop-off driver",day1_activation,0.31,0.38,up,2026-09-15,2026-11-30,,running,
+E5,TikTok channel test,"If we post 3 build-in-public videos a week, then qualified_signups will reach 15, because the ICP scrolls there",qualified_signups,0,15,up,2026-05-01,2026-06-30,3,abandoned,KILL
+E6,Referral incentive,"If we add a 1-month referral credit, then invites_per_user will rise to 0.6, because the incentive removes the awkward ask",invites_per_user,0.4,0.6,up,2026-11-01,2026-12-01,,planned,

@@ -1,0 +1,53 @@
+{
+  "skill_name": "content-and-seo-engine",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I've been blogging sporadically for months and basically nobody reads it. I want to be more consistent but I don't know what to write about or how often. I sell a bookkeeping tool for freelance designers. Where do I even start?",
+      "expected_output": "Establishes the pillar-and-cluster model: names the ONE question the buyer asks most as the pillar, plans 3-4 supporting pieces that link up to it, sets a sustaining cadence (one pillar + supporting pieces monthly), and briefs each piece with a target query and intent. Outputs land in founder/gtm/content/. Should push consistency and specificity over volume, and require a distribution step per piece.",
+      "files": [],
+      "expectations": [
+        "Recommends one pillar plus 3-4 supporting pieces at a cadence a solo founder can hold",
+        "Derives topics from the buyer's real language rather than founder jargon",
+        "Requires a named target query and intent per piece before writing",
+        "Frames content as a compounding program, not one-off posts"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "how do I get my product cited by ChatGPT and AI Overviews instead of just ranking on Google? people keep telling me SEO is dead now",
+      "expected_output": "Explains GEO/AEO: answer-first writing, question-shaped headings, citable concrete facts, schema markup, an llms.txt, and platform-native content. Distinguishes classic SEO from AI-answer optimisation, notes the zero-click shift without inventing statistics (attributes any figures loosely as industry reporting or omits them), and treats optimisation as a recurring loop since the SERP keeps changing.",
+      "files": [],
+      "expectations": [
+        "Covers GEO/AEO mechanics: answer-first, structured, citable, schema, llms.txt, platform-native",
+        "Does not declare SEO dead; positions GEO/AEO as partly parallel to classic search",
+        "Attributes any AI-search statistics loosely ('industry reporting') or omits them rather than inventing numbers",
+        "Treats optimisation as a recurring pass, not set-and-forget"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I want to spin up 500 programmatic pages targeting '[competitor] alternative for [industry]' to get traffic fast. Can you set that up so we rank for everything?",
+      "expected_output": "Warns about doorway/thin pages and the concentration risk of mass near-duplicate pages dragging good pages down. Explains the healthy version: real structured data, human-curated facts per page, a core page variants hang from, and a per-page quality bar. Recommends generating fewer pages that a real person would be glad exists, and refuses to mass-produce thin content.",
+      "files": [],
+      "expectations": [
+        "Names doorway/thin pages as the trap and explains the demotion risk",
+        "Describes the healthy structured approach with per-page unique value",
+        "Pushes back on generating 500 thin pages and recommends fewer, useful ones",
+        "Applies the 'would a real person be glad this page exists' test"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "here's my plan for next month: publish the Product Hunt announcement copy, the Show HN post, and our cold email template as three blog posts, plus maybe some tweets. That counts as content, right? Also should I optimise for 'best bookkeeping software' with a blog post?",
+      "expected_output": "Distinguishes ongoing content from launch copy: republishing PH/Show HN/cold-email assets is duplication, not an engine. Steers toward a pillar answering the buyer's real question plus supporting sub-question pieces, each with a target query and a distribution step (thread, video, newsletter, community answer). Flags 'best X' as a commercial intent needing a comparison-style page, not a generic post, and keeps claims/comparisons under founder approval.",
+      "files": [],
+      "expectations": [
+        "Rejects republishing launch copy as the content engine (duplication, different audience/voice)",
+        "Redirects to a pillar plus supporting sub-question pieces with target queries",
+        "Matches the format to the query intent (commercial 'best X' needs a comparison page)",
+        "Keeps claim/comparison approval with the founder and requires a distribution step per piece"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "skill_name": "positioning-and-messaging",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I built a tool that turns messy meeting notes into a weekly status report, but nobody gets what it is. My homepage just says 'AI-powered workflow automation platform' and signups are flat. How do I figure out my positioning and rewrite my landing page?",
+      "expected_output": "Runs the Dunford method: lists the real alternatives (a shared doc, pasting notes into Slack, 'do nothing'), extracts verifiable attributes, translates them to buyer value, names a narrow best-fit segment, and chooses a category the buyer already uses. Produces founder/gtm/positioning/positioning.md and messaging.md with a one-line positioning statement, a landing hero (headline/subhead/CTA), value props, and top objections. Lints headlines with scripts/headline_lint.py and asks for a human cold-read test rather than declaring the copy final.",
+      "files": [],
+      "expectations": [
+        "Lists alternatives including a spreadsheet/chat/'do nothing', not just named competitors",
+        "Translates features into outcomes rather than listing attributes as value",
+        "Produces a one-line 'X for Y who need Z, unlike W' positioning statement",
+        "Runs scripts/headline_lint.py on the candidate headlines and reports scores",
+        "Names the human cold-read test as a step the founder runs"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "write me a landing page hero. product is a CRM for wedding photographers. headline should be revolutionary and seamless, something like 'The all-in-one platform for everyone'.",
+      "expected_output": "Pushes back on the requested hype copy: explains why 'revolutionary/seamless/all-in-one/everyone' weaken the headline, narrows the ICP away from 'everyone', and reworks the headline to name the change and the audience. Still produces a hero with the user's intent served, offers 2-3 candidates, lints them, and keeps any comparative/numeric claim flagged as the founder's to approve. Should not simply comply with the requested wording.",
+      "files": [],
+      "expectations": [
+        "Challenges 'revolutionary', 'seamless', 'all-in-one', and 'everyone' rather than copying them",
+        "Replaces the feature-first/'platform' framing with an outcome-led headline",
+        "Narrows the audience from 'everyone' to wedding photographers",
+        "Lints the candidates and explains the issues found",
+        "Does not invent testimonials, metrics, or comparative claims"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I'm deciding whether to call my product a 'spreadsheet' or invent a new category called 'revenue intelligence workspace'. Which is better and why?",
+      "expected_output": "Explains the trade-off using the reference method: positioning within an existing category is cheaper and reuses a budget line, while a new category requires educating the market that the problem exists and carries real cost. Recommends the existing category by default, describes when a new category is justified, and ties the choice back to alternatives, attributes, and the best-fit buyer. Points to references/positioning-method.md.",
+      "files": [],
+      "expectations": [
+        "Names the cost of creating a new category (market education, no existing budget line)",
+        "Defaults to positioning within an existing buyer-familiar category",
+        "Conditions a new category on no existing frame letting the buyer see the value",
+        "Ties the decision back to alternatives, attributes, and best-fit customer",
+        "Does not invent market statistics to support either option"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "our first customers are all marketing agencies but we originally positioned for 'small businesses'. we added a bunch of features since launch and the site copy feels stale. can you refresh it?",
+      "expected_output": "Recognises positioning drift after month one, re-runs the early steps against the real best-fit customer (marketing agencies) rather than assuming small businesses, updates the canvas and messaging guide, re-lints the headlines, and timestamps the revised positioning. Should treat positioning as versioned and require a fresh cold-read test.",
+      "files": [],
+      "expectations": [
+        "Identifies the drift between the stated ICP and the actual best-fit customer",
+        "Revises the segment to the one the first customers prove out",
+        "Updates both positioning.md and messaging.md and re-lints the copy",
+        "Timestamps/versions the positioning so staleness is visible",
+        "Requires a fresh human cold-read test rather than finalising silently"
+      ]
+    }
+  ]
+}

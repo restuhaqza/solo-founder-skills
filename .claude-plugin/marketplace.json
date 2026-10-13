@@ -10,16 +10,22 @@
   "plugins": [
     {
       "name": "founder-core",
-      "description": "The solo-founder core pack: validate an idea, scope an MVP, price it, launch it, measure it, and run the weekly operating rhythm.",
+      "description": "The solo-founder operating system: route, validate, scope, price, position, launch, publish, measure, experiment, support, operate, and fundraise.",
       "source": "./",
       "strict": false,
       "skills": [
+        "./skills/solo-founder-os",
         "./skills/idea-validation",
         "./skills/mvp-scoping",
         "./skills/pricing-strategy",
+        "./skills/positioning-and-messaging",
         "./skills/go-to-market-launch",
+        "./skills/content-and-seo-engine",
         "./skills/product-metrics",
-        "./skills/founder-operating-rhythm"
+        "./skills/experiments-and-growth",
+        "./skills/support-and-onboarding",
+        "./skills/founder-operating-rhythm",
+        "./skills/fundraising-and-investor-updates"
       ]
     }
   ]
