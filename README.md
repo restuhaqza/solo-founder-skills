@@ -13,6 +13,11 @@ The design is deliberately small. Research on solo builders in 2026 points the s
 
 Start with [`solo-founder-os`](skills/solo-founder-os) — it boots the shared workspace, writes your `founder/context.md`, and routes you to the right skill for the moment.
 
+<p align="center">
+  <img alt="A terminal demo: the founder asks 'am I going to make it?', the founder-operating-rhythm skill runs runway.py, and it prints net burn, runway, break-even, the flip growth rate, and a default-alive verdict" src="docs/assets/demo.gif" width="820">
+</p>
+<p align="center"><em>Ask in plain English; the skill runs its own script and answers with a number — <a href="skills/founder-operating-rhythm">founder-operating-rhythm</a>.</em></p>
+
 ## The pack
 
 **Route**
