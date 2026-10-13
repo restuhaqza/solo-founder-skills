@@ -48,7 +48,7 @@ Start with [`solo-founder-os`](skills/solo-founder-os) — it boots the shared w
 **Claude Code (plugin marketplace):**
 
 ```
-/plugin marketplace add <owner>/solo-founder-skills
+/plugin marketplace add restuhaqza/solo-founder-skills
 /plugin install founder-core@solo-founder-skills
 ```
 
@@ -101,6 +101,33 @@ They hand off in a loop, not a line: validate → scope → price → position �
 - "Support is eating my day" → `support-and-onboarding`
 - "I'm overwhelmed / am I default dead?" → `founder-operating-rhythm`
 - "Should I raise, and how do I update investors?" → `fundraising-and-investor-updates`
+
+## Results
+
+The pack ships with an evaluation, not a claim. Each skill is tested with a realistic **trap prompt** — the kind of request that makes a general-purpose model fail (asks for jargon, for 500 thin pages, to ship on a three-day peek, to skip a bad-news update) — run **with** and **without** the skill, and graded by a separate agent that reads only the output files.
+
+Across five iterations and **96 graded runs**:
+
+- **With the skill: 100% of assertions passed on every skill.**
+- **Without: 54% on average**, and worse on the strongest traps.
+- The loop found and fixed **two real defects** — a scoring false positive in the headline linter, and a missing "growth rate at which the runway verdict flips" output.
+
+| Skill | The trap it must avoid | With | Without | Δ |
+| :-- | :-- | --: | --: | --: |
+| `solo-founder-os` | routes to **one** skill, not a menu | 1.00 | 0.20 | +0.80 |
+| `pricing-strategy` | reprices without ignoring existing customers | 1.00 | 0.00 | +1.00 |
+| `go-to-market-launch` | keeps outbound in the founder's hands | 1.00 | 0.30 | +0.70 |
+| `positioning-and-messaging` | refuses "revolutionary / all-in-one for everyone" | 1.00 | 0.57 | +0.43 |
+| `content-and-seo-engine` | refuses 500 thin programmatic pages | 1.00 | 0.58 | +0.42 |
+| `mvp-scoping` | guards the 90/10 scope against creep | 1.00 | 0.60 | +0.40 |
+| `product-metrics` | a weekly digest that ends in **one action** | 1.00 | 0.60 | +0.40 |
+| `support-and-onboarding` | no AI chatbot at 30 customers | 1.00 | 0.60 | +0.40 |
+| `idea-validation` | separates compliments from evidence | 1.00 | 0.70 | +0.30 |
+| `experiments-and-growth` | refuses shipping on a 3-day peek | 1.00 | 0.70 | +0.30 |
+| `fundraising-and-investor-updates` | sends the bad-news update, does not skip it | 1.00 | 0.80 | +0.20 |
+| `founder-operating-rhythm` | runway verdict **and** the growth rate it flips at | 1.00 | 0.80 | +0.20 |
+
+Full method, per-iteration history, and caveats: [`docs/benchmark.md`](docs/benchmark.md).
 
 ## What are Agent Skills?
 
