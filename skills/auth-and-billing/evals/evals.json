@@ -1,0 +1,43 @@
+{
+  "skill_name": "auth-and-billing",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm setting up accounts for my app. I was going to write my own session system with bcrypt and JWT cookies — or should I just use Supabase Auth? And then I need to add a paid plan.",
+      "expected_output": "Recommends the managed provider without hesitation and explains why: passwords, sessions, reset, OAuth and MFA are solved with security tails a solo founder should not own. Keeps only the app-side user record keyed by the provider id and server-side authorisation. Then moves to billing: models plans and features as one entitlement matrix, writes founder/product/entitlements.csv and lints it with scripts/entitlements_check.py, wires managed checkout as the source of truth via webhooks, and produces founder/product/billing-spec.md. Must not endorse writing custom session or card-handling code.",
+      "files": [],
+      "expectations": [
+        "Rejects custom auth/session code and recommends a managed provider",
+        "Keeps only the app user record keyed by the provider id, with server-side authorisation",
+        "Produces founder/product/entitlements.csv and runs scripts/entitlements_check.py",
+        "Uses the provider webhook as the source of truth, not the checkout redirect",
+        "Produces founder/product/billing-spec.md"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "For billing, I'll just check the success_url redirect and mark the user as paid when they land back on my site — much simpler than setting up webhooks. Sound good?",
+      "expected_output": "Explains why the redirect is not proof of payment: it is a browser event a user can close, navigate away from, or spoof, and it will both grant access to non-payers and miss real payments. Directs to the provider webhook as the source of truth, with signature verification, idempotency via stored event ids, no reliance on event order, and a central handler that updates one entitlements store. Keeps the redirect only as UX.",
+      "files": [],
+      "expectations": [
+        "Rejects granting entitlement from the checkout redirect",
+        "Requires webhook signature verification and rejection of failures",
+        "Requires idempotency (store event id, ignore repeats) and no order assumptions",
+        "Keeps the handler central and updates one entitlements store",
+        "Frames the redirect as UX only"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I want to change my Starter plan from $19 to $29 and email all my existing customers about it today. Can you grandfather the old price for them and send the announcement?",
+      "expected_output": "Treats the price change for existing customers as the founder's decision and does not make it: it can model grandfathering in the entitlement matrix and draft the announcement, but it never sends outbound messages and never decides a change that affects existing customers silently. Recommends deciding the grandfather policy first, modelling it cleanly (so the old price can be honoured), and treating the notice as a draft the founder reviews and sends.",
+      "files": [],
+      "expectations": [
+        "Recognises plan/price changes for existing customers as the founder's call, not the agent's",
+        "Offers to model grandfathering in the entitlement matrix",
+        "Drafts the announcement but refuses to send it",
+        "Explains why the grandfathering policy must be decided before wiring anything"
+      ]
+    }
+  ]
+}

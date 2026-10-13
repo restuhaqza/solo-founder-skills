@@ -1,0 +1,8 @@
+feature,free,starter,pro
+projects,3,25,unlimited
+seats,1,3,10
+api_access,no,yes,yes
+custom_domain,no,no,yes
+sso,no,no,yes
+csv_export,yes,yes,yes
+priority_support,no,no,yes
