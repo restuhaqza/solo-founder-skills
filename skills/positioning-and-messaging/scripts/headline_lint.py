@@ -100,8 +100,8 @@ CLICHES = [
     "think outside the box",
     "best-kept secret",
     "best kept secret",
-    "all-in-one solution",
-    "all in one solution",
+    "all-in-one",
+    "all in one",
     "end-to-end solution",
     "end to end solution",
     "one size fits all",
@@ -157,8 +157,12 @@ FEATURE_NOUNS = {
     "service",
 }
 
+# Audiences that name no one — the classic "for everyone" trap. Naming these is
+# not a real audience cue, so they are flagged instead of counted.
+VAGUE_AUDIENCE = {"everyone", "everybody", "anyone", "anybody"}
+
 # A rough audience lexicon. Presence of any of these, or the word "for", counts
-# as an audience cue. A headline with none of them is probably talking to no one.
+# as an audience cue — unless the only audience named is vague (VAGUE_AUDIENCE).
 AUDIENCE_WORDS = {
     "founders",
     "founder",
@@ -350,6 +354,7 @@ DEDUCTIONS = {
     "cliche": 10,
     "open_first_person": 15,
     "no_audience": 15,
+    "vague_audience": 15,
     "feature_first": 15,
     "missing_verb": 15,
     "all_caps": 6,
@@ -423,9 +428,17 @@ def lint_headline(headline: str, max_words: int = MAX_WORDS_DEFAULT) -> dict:
             'lead with the customer or the outcome, not "we/our"',
         )
 
-    # 5. Audience cue: does the headline name who it is for?
+    # 5. Audience cue: does the headline name who it is for? A cue that names
+    # "everyone" names no one, so vague audiences fail this check too.
+    vague = [v for v in VAGUE_AUDIENCE if find_phrase(text, v)]
     has_audience = find_phrase(text, "for") or any(t in AUDIENCE_WORDS for t in lowered)
-    if not has_audience:
+    if vague:
+        add(
+            "vague_audience",
+            f'audience is "{vague[0]}" — which is no one',
+            "name the specific buyer (role and context), not everyone",
+        )
+    elif not has_audience:
         add(
             "no_audience",
             "no audience cue",
