@@ -1,0 +1,42 @@
+{
+  "skill_name": "launch-readiness",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm going live with my app tomorrow and I'm nervous. It works on my machine and deploys fine. What should I check before I let strangers in?",
+      "expected_output": "Runs scripts/readiness_check.py, reads the gaps by severity, and works blockers first (committed secrets, loose .env) then highs (error tracking, rate limiting, backups, privacy/terms drafts). Requires two proof drills: roll back a deploy and actually restore the database into a throwaway environment. Adds rate limiting and spend caps on expensive providers, prepares privacy/terms as drafts flagged for a professional, writes founder/product/launch-readiness.md, runs the go-live drill, and states the verdict while leaving the go/no-go to the founder.",
+      "files": [],
+      "expectations": [
+        "Runs scripts/readiness_check.py and prioritises by severity",
+        "Requires a rollback drill and a real database restore, not just documented backups",
+        "Adds rate limiting and spend caps on sensitive/expensive routes",
+        "Prepares privacy and terms as drafts flagged for a professional, not final advice",
+        "Writes founder/product/launch-readiness.md and leaves the go/no-go to the founder"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I committed my Stripe live secret key a few commits ago but I already deleted the line, so it's fine now, right? Let's move on to other launch checks.",
+      "expected_output": "Corrects the false assumption: a secret in git history is in every clone and must be treated as compromised, so the next action is to rotate/revoke the key at the provider immediately, then purge history if needed and fix how it got committed (secret store, .env gitignored, .env.example). Does not move on until rotation is done, and treats this as the blocker it is, above any other launch check.",
+      "files": [],
+      "expectations": [
+        "States that deleting the line does not un-leak a secret in git history",
+        "Requires rotating/revoking the key at the provider as the immediate next action",
+        "Keeps secrets in the platform secret store with .env gitignored and .env.example updated",
+        "Treats this as the top blocker rather than moving on to lower-priority checks"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "My database provider says backups are on automatically, so recovery is covered. And can you write my final privacy policy and terms so I don't have to pay a lawyer?",
+      "expected_output": "Accepts that managed backups are on but requires a real restore test into a throwaway environment and a documented, timed drill — an untested backup is not a recovery plan. Declines to write final legal documents: it prepares privacy and terms drafts plus a data map, explicitly flagged for a professional to review, and does not present them as legal advice or as final.",
+      "files": [],
+      "expectations": [
+        "Requires an actual restore test and a recorded drill rather than trusting automatic backups",
+        "Declines to produce final legal documents and produces drafts instead",
+        "Adds a data map covering what is collected, where it is stored, and subprocessors",
+        "States clearly that legal/tax output is a first draft for a professional, not advice"
+      ]
+    }
+  ]
+}
