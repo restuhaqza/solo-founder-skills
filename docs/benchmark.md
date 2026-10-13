@@ -21,9 +21,13 @@ transcript — scores each run against explicit pass/fail assertions (burden of
 proof on PASS, no partial credit). The metric is pass rate per configuration.
 Runs are 2–3 per configuration.
 
-- Model under test: `cmc/deepseek/deepseek-v4.1-flash`
+- Model under test: `cmc/deepseek/deepseek-v4.1-flash` (iteration 6 ran on the
+  configured default, `deepseek-v4.1-flash`)
 - **12 skills × 1 trap each × 2 configurations × 2–3 runs = 96 graded runs**
   across five iterations.
+- **Iteration 6** adds the three build skills (`saas-scaffold`, `auth-and-billing`,
+  `launch-readiness`): 3 skills × 3 evals each × 2 configurations × 1 run = **18 runs /
+  82 graded assertions** (41 per configuration).
 - **Pass rate is the only metric** — timing and token data were not captured.
 
 ## Iteration history
@@ -35,6 +39,7 @@ Runs are 2–3 per configuration.
 | 3 | second 6 | 24 | 100% | 71.7% | +0.28 |
 | 4 | second 6 (tightened assertions) | 24 | 98.3% | 64.2% | +0.34 |
 | 5 | 2 of the second 6 (defects fixed) | 12 | 100% | 68.5% | +0.31 |
+| 6 | 3 build skills (3 evals each) | 18 | 100% | 65.9% | +0.34 |
 
 Iterations 2 and 4 test the same six skills with progressively stricter
 assertions: the delta fell from +0.60 to +0.34 because the assertions began
@@ -61,10 +66,37 @@ Latest iteration for each skill. "With" is the mean pass rate with the skill;
 | `experiments-and-growth` | refuses shipping on a 3-day peek | 1.00 | 0.70 | +0.30 | 4 |
 | `founder-operating-rhythm` | runway verdict **and** the growth rate it flips at | 1.00 | 0.80 | +0.20 | 5 |
 | `fundraising-and-investor-updates` | sends the bad-news update, does not skip it | 1.00 | 0.80 | +0.20 | 4 |
+| `saas-scaffold` | guards day zero against "skip CI/migrations, ship fast" | 1.00 | 0.64 | +0.36 | 6 |
+| `auth-and-billing` | refuses hand-rolled auth, redirect-as-payment, ungated price change | 1.00 | 0.71 | +0.29 | 6 |
+| `launch-readiness` | a deleted secret line is still leaked; backups ≠ recovery | 1.00 | 0.62 | +0.38 | 6 |
 
 With the skill, every trap is passed. Without, the base model clears only 54%
 of the assertions on average, and on the sharpest traps (`solo-founder-os`,
-`pricing-strategy`) it fails most of them.
+`pricing-strategy`) it fails most of them. On the build-skill set (iteration 6,
+three prompts per skill) the base model clears **65.9%**; its worst single trap is
+the nervous first-launch prompt, where generic advice tiers risks instead of
+running a scan and demanding a restore drill (`launch-readiness`, 0.20 without).
+
+### Iteration 6, per eval
+
+| Skill | Eval (the trap) | With | Without |
+| :-- | :-- | --: | --: |
+| `saas-scaffold` | "set up the project" (day zero) | 1.00 | 0.50 |
+| `saas-scaffold` | "skip CI and migrations, build fast" | 1.00 | 0.50 |
+| `saas-scaffold` | "keys in config.ts, repo is private" | 1.00 | 1.00 |
+| `auth-and-billing` | "write my own bcrypt/JWT sessions" | 1.00 | 0.60 |
+| `auth-and-billing` | "mark paid from the success_url redirect" | 1.00 | 0.80 |
+| `auth-and-billing` | "change the price and email everyone" | 1.00 | 0.75 |
+| `launch-readiness` | "going live tomorrow, I'm nervous" | 1.00 | 0.20 |
+| `launch-readiness` | "I deleted the leaked key, it's fine" | 1.00 | 1.00 |
+| `launch-readiness` | "backups are on, write my final legal docs" | 1.00 | 0.75 |
+
+Two of the nine prompts are cleared without the skill too (`saas-scaffold` eval 3
+and `launch-readiness` eval 2): a capable model already knows that a committed
+secret stays in git history and must be rotated. That is a fair result to record —
+the skill adds most where the base model has no default ritual (running a scan,
+demanding a restore drill, keeping an outbound message unsent), not on the
+obvious-by-now secret-leak reflex.
 
 ## Defects the loop found
 
@@ -83,15 +115,29 @@ The point of an eval loop is to catch real problems. Two were found and fixed:
    (pre-tax) · 4.0%/mo after tax`), verified by brute-forcing the script's own
    verdict (flips at 2.85%/mo).
 
+Iteration 6 found **no new skill defects** — every with-skill run passed. It did
+surface one harness limitation worth recording: in the with-skill scaffold run the
+agent reached 11/12 on `repo_scan.py` and could not reach 12/12 because producing
+a committed lockfile needs a package-manager install, which the harness forbids for
+run comparability. That is an artefact of the test rig, not the skill.
+
 ## Caveats
 
 - **Pass rate only.** No timing or token data was captured; cost/latency are not
   measured here.
-- **One trap prompt per skill.** These are sharp, adversarial prompts, not a
-  broad sample of the task space. They are designed to discriminate, not to
-  estimate average performance.
+- **One trap prompt per skill (iterations 1–5).** These are sharp, adversarial
+  prompts, not a broad sample of the task space. They are designed to discriminate,
+  not to estimate average performance. Iteration 6 uses **three** prompts per skill.
+- **Single run per configuration in iteration 6.** The build skills were graded from
+  one run per config, so run-to-run variance is unmeasured for them (iterations 1–5
+  used 2–3 runs/config, where all cells were stable).
 - **Assertion sets were tightened across iterations.** A lower delta in a later
   iteration usually means a stricter (fairer) test, not a weaker skill.
 - **Low run-to-run variance.** In iteration 5 (3 runs/config) all 12 cells scored
   identically across their runs, so the assertion set is stable and reproducible
   — but that also means run-to-run spread is too small to measure here.
+- **Grader is file-only.** Every grade is based solely on the artifacts a run wrote
+  (a grader never read the transcript), and the without-skill runs were instructed
+  not to install dependencies so file content is the only variable.
+- **Raw outputs** live in the git-ignored `eval-workspace/iteration-*` directories;
+  this file is regenerated from them.

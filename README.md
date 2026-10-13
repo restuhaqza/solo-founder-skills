@@ -2,14 +2,14 @@
 <p align="center"><em>Agent Skills that turn a general-purpose coding agent into a solo-founder operator.</em></p>
 
 <p align="center">
-  <img alt="Skills" src="https://img.shields.io/badge/skills-12-blue?style=flat-square">
+  <img alt="Skills" src="https://img.shields.io/badge/skills-15-blue?style=flat-square">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-green?style=flat-square">
   <img alt="Standard" src="https://img.shields.io/badge/Agent%20Skills-open%20standard-purple?style=flat-square">
 </p>
 
 A small, opinionated pack of [Agent Skills](https://agentskills.io) for people who run a software business alone — the founder who is also the product manager, the marketer, the support desk, and the bookkeeper. Built on the open Agent Skills standard, so the same folders work in Claude Code, OpenAI Codex, Gemini CLI, Cursor, VS Code / Copilot, and OpenCode.
 
-The design is deliberately small. Research on solo builders in 2026 points the same way: building got cheap, everything *around* building (distribution, retention, trust, legal/finance) did not. So this pack covers the whole lifecycle with **twelve skills, one per "hat"** — each biased toward **verifiable** output (a script that computes a number) or **structural** output (a file you edit), not confident prose generated from nothing.
+The design is deliberately small. Research on solo builders in 2026 points the same way: building got cheap, everything *around* building (distribution, retention, trust, legal/finance) did not. So this pack covers the whole lifecycle with **fifteen skills, one per "hat"** — each biased toward **verifiable** output (a script that computes a number) or **structural** output (a file you edit), not confident prose generated from nothing.
 
 Start with [`solo-founder-os`](skills/solo-founder-os) — it boots the shared workspace, writes your `founder/context.md`, and routes you to the right skill for the moment.
 
@@ -31,6 +31,13 @@ Start with [`solo-founder-os`](skills/solo-founder-os) — it boots the shared w
 | Validator | [`idea-validation`](skills/idea-validation) | Typed, falsifiable assumptions + a Mom Test interview guide + competitor scan + a go/no-go brief. |
 | Product | [`mvp-scoping`](skills/mvp-scoping) | The 90/10 MVP scope, exit criteria, a boring-stack decision, and an MVP spec. |
 | Pricing | [`pricing-strategy`](skills/pricing-strategy) | A value metric, 2–3 tiers, WTP research, and a pricing page. |
+
+**Build it**
+| Hat | Skill | The outcome it produces |
+| :-- | :-- | :-- |
+| Builder | [`saas-scaffold`](skills/saas-scaffold) | A runnable day-zero scaffold, environments and config, CI gates, migrations, and a walking skeleton. |
+| Integrator | [`auth-and-billing`](skills/auth-and-billing) | Managed auth + subscription billing wired end to end, with one linted entitlement matrix. |
+| Release engineer | [`launch-readiness`](skills/launch-readiness) | A go-live scan, recovery drills (rollback + restore), abuse controls, and legal/privacy drafts for review. |
 
 **Get found**
 | Hat | Skill | The outcome it produces |
@@ -80,7 +87,7 @@ The skills share one workspace: a `founder/` folder at your project root. Each w
 founder/
 ├── context.md          # product one-liner, ICP, stage, north-star, stack (shared)
 ├── validation/         # idea-validation
-├── product/            # mvp-scoping
+├── product/            # mvp-scoping, saas-scaffold, auth-and-billing, launch-readiness
 ├── pricing/            # pricing-strategy
 ├── gtm/                # positioning-and-messaging, go-to-market-launch, content-and-seo-engine
 ├── metrics/            # product-metrics
@@ -90,13 +97,16 @@ founder/
 └── fundraising/        # fundraising-and-investor-updates
 ```
 
-They hand off in a loop, not a line: validate → scope → price → position → launch → publish → measure → experiment → support → operate → (new evidence) → validate. Each skill names the sibling it hands to, and `solo-founder-os` can route you when you are not sure.
+They hand off in a loop, not a line: validate → scope → **build** → price → position → launch → publish → measure → experiment → support → operate → (new evidence) → validate. Each skill names the sibling it hands to, and `solo-founder-os` can route you when you are not sure.
 
 **Which one do I want?**
 
 - "Where do I even start?" → `solo-founder-os`
 - "Is this idea worth building?" → `idea-validation`
 - "What's the smallest thing I can ship?" → `mvp-scoping`
+- "I'm ready to build — set up my repo" → `saas-scaffold`
+- "Add login and payments / gate features by plan" → `auth-and-billing`
+- "Am I safe to go live?" → `launch-readiness`
 - "How much should I charge?" → `pricing-strategy`
 - "How do I describe this / write the headline?" → `positioning-and-messaging`
 - "How do I get users?" → `go-to-market-launch`
@@ -111,10 +121,10 @@ They hand off in a loop, not a line: validate → scope → price → position �
 
 The pack ships with an evaluation, not a claim. Each skill is tested with a realistic **trap prompt** — the kind of request that makes a general-purpose model fail (asks for jargon, for 500 thin pages, to ship on a three-day peek, to skip a bad-news update) — run **with** and **without** the skill, and graded by a separate agent that reads only the output files.
 
-Across five iterations and **96 graded runs**:
+Across six iterations and **114 graded runs** (96 across the original twelve skills, plus 18 for the three build skills):
 
 - **With the skill: 100% of assertions passed on every skill.**
-- **Without: 54% on average**, and worse on the strongest traps.
+- **Without: 54% on average** across the twelve, and **66%** across the three build skills — better, but still failing the traps that need a ritual the base model doesn't default to.
 - The loop found and fixed **two real defects** — a scoring false positive in the headline linter, and a missing "growth rate at which the runway verdict flips" output.
 
 | Skill | The trap it must avoid | With | Without | Δ |
@@ -131,8 +141,13 @@ Across five iterations and **96 graded runs**:
 | `experiments-and-growth` | refuses shipping on a 3-day peek | 1.00 | 0.70 | +0.30 |
 | `fundraising-and-investor-updates` | sends the bad-news update, does not skip it | 1.00 | 0.80 | +0.20 |
 | `founder-operating-rhythm` | runway verdict **and** the growth rate it flips at | 1.00 | 0.80 | +0.20 |
+| `saas-scaffold` | guards day zero against "skip CI/migrations, ship fast" | 1.00 | 0.64 | +0.36 |
+| `auth-and-billing` | refuses hand-rolled auth, redirect-as-payment, ungated price change | 1.00 | 0.71 | +0.29 |
+| `launch-readiness` | a deleted secret line is still leaked; backups ≠ recovery | 1.00 | 0.62 | +0.38 |
 
 Full method, per-iteration history, and caveats: [`docs/benchmark.md`](docs/benchmark.md).
+
+The three **build** skills were added in iteration 6 and graded with three prompts each (the original twelve use one trap each). Two of the nine build-skill prompts (`saas-scaffold` eval 3, `launch-readiness` eval 2) are already cleared without the skill — a capable model knows a committed secret stays in git history. The skill's edge shows where the base model has no default ritual: running a scan, demanding a restore drill, keeping an outbound message unsent. Its sharpest trap is the nervous first-launch prompt (`launch-readiness`, 0.20 without).
 
 ## What are Agent Skills?
 
