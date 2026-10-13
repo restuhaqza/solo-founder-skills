@@ -26,6 +26,9 @@ what nobody has validated, and you cannot measure a launch that hasn't happened.
 | "Help me validate this" · "I want to talk to customers" · "Here are my interview notes" | Turn scattered evidence into a case for and against | `idea-validation` | `founder/validation/go-no-go.md` |
 | "What do I build first?" · "This is getting too big" · "V1 keeps growing" | Cut to the smallest thing that proves the value | `mvp-scoping` | `founder/product/mvp-spec.md` |
 | "Help me write the spec" · "I keep adding features" · "Which stack should I use?" | Scope, cut, and sequence the build | `mvp-scoping` | `founder/product/mvp-spec.md` |
+| "I'm ready to build now" · "Set up my repo" · "Where do I put config/secrets?" | Turn the spec into a runnable scaffold before the first slice | `saas-scaffold` | `founder/product/scaffold-plan.md` |
+| "Add login / payments" · "How do I gate features by plan?" · "How do I know someone paid?" | Wire managed auth + billing and own the entitlement matrix | `auth-and-billing` | `founder/product/billing-spec.md` |
+| "Am I safe to launch?" · "What if my database dies?" · "How do I roll back?" | Harden for the first real users and prove recovery | `launch-readiness` | `founder/product/launch-readiness.md` |
 | "How much do I charge?" · "Is my price too low?" · "Should this be a subscription?" | Set value-based pricing and packaging | `pricing-strategy` | `founder/pricing/pricing.md` |
 | "Should I add a free tier?" · "Design my pricing page" | Shape tiers and the page that sells them | `pricing-strategy` | `founder/pricing/pricing.md` |
 | "How do I get users?" · "Nobody's finding my product" · "I'm launching next month" | Stand up distribution, not just a launch-day spike | `go-to-market-launch` | `founder/gtm/launch-plan.md` |
@@ -41,17 +44,21 @@ The stages are loops, not a line — validation feeds positioning, distribution 
 product discovery, retention feeds pricing. Follow the arrow, then come back.
 
 ```
-      ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
-      │   VALIDATE   │───>│    SCOPE     │───>│    PRICE     │
-      │idea-validation│   │  mvp-scoping │    │pricing-strategy│
-      └──────────────┘    └──────────────┘    └──────────────┘
-             ^                                        │
-             │                                        v
-      ┌──────────────┐    ┌──────────────┐    ┌──────────────┐
-      │   OPERATE    │<───│   MEASURE    │<───│    LAUNCH    │
-      │founder-ops-  │    │product-metrics│   │go-to-market- │
-      │rhythm        │    │              │    │launch        │
-      └──────────────┘    └──────────────┘    └──────────────┘
+      ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐
+      │ VALIDATE │──>│  SCOPE   │──>│  BUILD   │──>│  PRICE   │
+      │idea-     │   │mvp-      │   │saas-     │   │pricing-  │
+      │validation│   │scoping   │   │scaffold +│   │strategy  │
+      │          │   │          │   │auth-and- │   │          │
+      │          │   │          │   │billing   │   │          │
+      └──────────┘   └──────────┘   └──────────┘   └──────────┘
+             ^                                            │
+             │                                            v
+      ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐
+      │ OPERATE  │<──│ MEASURE  │<──│  LAUNCH  │<──│   SHIP   │
+      │founder-  │   │product-  │   │go-to-    │   │launch-   │
+      │ops-rhythm│   │metrics   │   │market-   │   │readiness │
+      │          │   │          │   │launch    │   │(the gate)│
+      └──────────┘   └──────────┘   └──────────┘   └──────────┘
              │
              └────────────> back to VALIDATE (new idea, pivot, or the next loop)
 ```

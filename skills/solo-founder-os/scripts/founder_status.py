@@ -16,6 +16,9 @@ Expected artifacts (lifecycle order):
     context.md                 shared brief   (all skills / solo-founder-os)
     validation/go-no-go.md     go/no-go brief (idea-validation)
     product/mvp-spec.md        MVP spec       (mvp-scoping)
+    product/scaffold-plan.md   scaffold plan  (saas-scaffold)
+    product/billing-spec.md    billing spec   (auth-and-billing)
+    product/launch-readiness.md readiness     (launch-readiness)
     pricing/pricing.md         pricing brief  (pricing-strategy)
     gtm/launch-plan.md         launch plan    (go-to-market-launch)
     metrics/metrics-spec.md    metrics spec   (product-metrics)
@@ -58,6 +61,27 @@ ARTIFACTS = [
         "path": "product/mvp-spec.md",
         "label": "MVP spec",
         "action": "Run mvp-scoping to produce founder/product/mvp-spec.md.",
+    },
+    {
+        "id": "scaffold",
+        "skill": "saas-scaffold",
+        "path": "product/scaffold-plan.md",
+        "label": "scaffold plan",
+        "action": "Run saas-scaffold to produce founder/product/scaffold-plan.md.",
+    },
+    {
+        "id": "billing",
+        "skill": "auth-and-billing",
+        "path": "product/billing-spec.md",
+        "label": "billing spec",
+        "action": "Run auth-and-billing to produce founder/product/billing-spec.md.",
+    },
+    {
+        "id": "readiness",
+        "skill": "launch-readiness",
+        "path": "product/launch-readiness.md",
+        "label": "launch readiness",
+        "action": "Run launch-readiness to produce founder/product/launch-readiness.md.",
     },
     {
         "id": "pricing",
@@ -143,7 +167,7 @@ def render(result: dict) -> str:
     for r in result["artifacts"]:
         mark = STATUS_MARK[r["status"]]
         lines.append(
-            f"  {mark} {r['path']:<24} {r['status']:<7} — {r['label']} ({r['skill']})"
+            f"  {mark} {r['path']:<28} {r['status']:<7} — {r['label']} ({r['skill']})"
         )
 
     c = result["completion"]

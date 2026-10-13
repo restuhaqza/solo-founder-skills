@@ -5,18 +5,21 @@
   },
   "metadata": {
     "description": "Agent Skills that turn a general-purpose agent into a solo-founder operator.",
-    "version": "1.0.0"
+    "version": "1.1.0"
   },
   "plugins": [
     {
       "name": "founder-core",
-      "description": "The solo-founder operating system: route, validate, scope, price, position, launch, publish, measure, experiment, support, operate, and fundraise.",
+      "description": "The solo-founder operating system: route, validate, scope, build, price, position, launch, publish, measure, experiment, support, operate, and fundraise.",
       "source": "./",
       "strict": false,
       "skills": [
         "./skills/solo-founder-os",
         "./skills/idea-validation",
         "./skills/mvp-scoping",
+        "./skills/saas-scaffold",
+        "./skills/auth-and-billing",
+        "./skills/launch-readiness",
         "./skills/pricing-strategy",
         "./skills/positioning-and-messaging",
         "./skills/go-to-market-launch",

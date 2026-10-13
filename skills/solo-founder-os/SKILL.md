@@ -91,6 +91,9 @@ Hand off to whichever skill the diagnosis selects — and only that one:
 
 - Uncertain the idea is real → `idea-validation` (next artifact: `founder/validation/go-no-go.md`).
 - Idea validated, ready to scope → `mvp-scoping` (next artifact: `founder/product/mvp-spec.md`).
+- Spec done, ready to build → `saas-scaffold` (next artifact: `founder/product/scaffold-plan.md`).
+- Needs signup, payments, or plan gating → `auth-and-billing` (next artifact: `founder/product/billing-spec.md`).
+- About to invite the first users → `launch-readiness` (next artifact: `founder/product/launch-readiness.md`).
 - Have a product, need a price → `pricing-strategy` (next artifact: `founder/pricing/pricing.md`).
 - Ready to launch or starved for users → `go-to-market-launch` (next artifact: `founder/gtm/launch-plan.md`).
 - Need numbers, or growth/churn is puzzling → `product-metrics` (next artifact: `founder/metrics/metrics-spec.md`).

@@ -116,7 +116,7 @@ Skills read and write a `founder/` folder at the project root so they compose:
 founder/
 ├── context.md          # product, ICP, stage, north star, stack — shared by all skills
 ├── validation/         # idea-validation
-├── product/            # mvp-scoping
+├── product/            # mvp-scoping, saas-scaffold, auth-and-billing, launch-readiness
 ├── pricing/            # pricing-strategy
 ├── gtm/                # positioning-and-messaging, go-to-market-launch, content-and-seo-engine
 ├── metrics/            # product-metrics
