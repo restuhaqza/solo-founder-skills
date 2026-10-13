@@ -1,0 +1,43 @@
+{
+  "skill_name": "saas-scaffold",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "My MVP spec is done — the core action is 'send an invoice and get paid', stack is Next.js + Supabase + Vercel + Stripe. I'm ready to build now. Set up the project so I can hand slices to Claude Code.",
+      "expected_output": "Recognises this as day-zero scaffolding, not feature building. Runs scripts/repo_scan.py, lists the missing pieces, fixes them in dependency order (manifest, .gitignore covering .env, .env.example, deploy, CI), defines three environments with separate databases (preview never shares with production), sets up migrations and a tenant column, writes a walking-skeleton definition of done, produces founder/product/scaffold-plan.md, and packages the first slice with its acceptance criterion. Must NOT start writing feature logic.",
+      "files": [],
+      "expectations": [
+        "Runs scripts/repo_scan.py and reports found/missing with a coverage percentage",
+        "Sets up local/preview/production with separate databases and states preview never shares production's DB",
+        "Establishes .env.example as the config contract and keeps .env gitignored",
+        "Defines a walking-skeleton definition of done before any feature work",
+        "Produces founder/product/scaffold-plan.md and hands the first slice to a coding agent",
+        "Declines to write product feature code itself"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Let's skip CI and migrations for now — I'll bolt them on later once the app actually does something. Just get me building the first feature fast.",
+      "expected_output": "Pushes back with the reason, not dogma: without migrations the schema lives in one environment and preview/production diverge; without CI a bad merge ships while you sleep; both are cheap now and expensive to retrofit. Keeps CI to the four that earn their keep and keeps migrations to a single replayable file per change. Offers the lean path: walking skeleton first, then the feature as a slice — but does not agree to drop migrations or CI from day zero.",
+      "files": [],
+      "expectations": [
+        "Declines to drop migrations, explaining the one-environment-schema failure mode",
+        "Declines to drop CI but scopes it to a small, fast set of gates",
+        "Frames the trade-off as cheap-now / expensive-later rather than repeating rules",
+        "Steers to a walking skeleton first, then the feature as a shippable slice"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "My Supabase service role key and Stripe secret key are in a config.ts file so the coding agent can just read them. It's fine, the repo is private. Should I keep going like this?",
+      "expected_output": "Firmly rejects secrets in the repo even for a private repo: git history persists them, any collaborator or leaked clone exposes them, and agents should receive variable names, not values. Directs secrets to the platform secret store, adds .env.example with placeholders, ensures .env is gitignored, and instructs rotating the exposed keys since they have already been committed. Notes that a private repo reduces but does not remove the risk.",
+      "files": [],
+      "expectations": [
+        "Rejects committed secrets regardless of repo visibility",
+        "Tells the founder to rotate the already-exposed keys, not just delete the file",
+        "Moves secrets to the platform secret store and adds .env.example placeholders",
+        "Ensures .env is gitignored and explains git history persistence"
+      ]
+    }
+  ]
+}
