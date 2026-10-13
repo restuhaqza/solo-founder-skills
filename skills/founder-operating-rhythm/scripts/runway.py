@@ -20,6 +20,11 @@ Definitions
     default alive      = revenue reaches costs within the cash runway
                          (Paul Graham's test; a company with no burn is alive)
     default dead       = it does not
+    flip growth rate   = the smallest monthly growth (%) that pulls break-even
+                         inside the runway. Hold at or above it and the verdict
+                         is default alive; fall below it and it is default dead.
+                         Reported on both the pre-tax and after-tax runway,
+                         because the after-tax basis needs a faster growth rate.
 
 Tax set-aside assumption
     The set-aside is modelled as --tax-rate (default 0.30) of *gross monthly
@@ -76,6 +81,35 @@ def months_str(value: float | None) -> str:
     return "no burn" if value is None else f"{value:.1f} months"
 
 
+def growth_pct_str(value: float | None) -> str:
+    return "unreachable" if value is None else f"{value:.1f}%"
+
+
+def growth_to_flip(cash: float, revenue: float, costs: float, tax_rate: float, after_tax: bool) -> float | None:
+    """Smallest monthly revenue growth (%) that makes the business default alive.
+
+    The verdict flips from default dead to default alive the moment break-even
+    lands inside the runway, and faster growth pulls break-even earlier. Solving
+    ``ln(costs/revenue) / ln(1 + g/100) <= runway`` for ``g`` gives that rate.
+    Returns ``0.0`` when any non-negative growth keeps you alive (already
+    break-even, or too little burn to matter), ``None`` when no growth rate can
+    save you (no revenue, or no cash and not yet profitable), else the rate.
+    """
+    if revenue >= costs:
+        return 0.0  # already break-even; nothing to grow into
+    if revenue <= 0:
+        return None  # zero revenue stays zero however fast it "grows"
+    collectable = revenue * (1.0 - tax_rate) if after_tax else revenue
+    net_burn = costs - collectable
+    if net_burn <= 0:
+        return 0.0  # the burn you can fund is already covered
+    if cash <= 0:
+        return None
+    runway = cash / net_burn
+    ratio = costs / revenue
+    return max(0.0, 100.0 * (ratio ** (1.0 / runway) - 1.0))
+
+
 def compute(args: argparse.Namespace) -> dict:
     cash = args.cash
     revenue = args.revenue
@@ -127,6 +161,12 @@ def compute(args: argparse.Namespace) -> dict:
         default_alive = False
         verdict = "DEFAULT DEAD"
 
+    # The growth rate at which the verdict would flip, on both runway bases. The
+    # pre-tax rate is the one that binds the verdict above; the after-tax rate is
+    # stricter, because tax reserves shrink the revenue that reaches the cost line.
+    flip_pretax = growth_to_flip(cash, revenue, costs, tax_rate, after_tax=False)
+    flip_after_tax = growth_to_flip(cash, revenue, costs, tax_rate, after_tax=True)
+
     result = {
         "inputs": {
             "cash": cash,
@@ -144,6 +184,8 @@ def compute(args: argparse.Namespace) -> dict:
         "break_even_month": break_even_month,
         "default_alive": default_alive,
         "verdict": verdict,
+        "flip_growth_pct_pretax": None if flip_pretax is None else round(flip_pretax, 1),
+        "flip_growth_pct_after_tax": None if flip_after_tax is None else round(flip_after_tax, 1),
     }
     result["verdict_sentence"] = verdict_sentence(result)
 
@@ -188,19 +230,35 @@ def verdict_sentence(result: dict) -> str:
 
     runway_txt = f"{runway:.1f} months" if runway is not None else "no burn"
     if result["default_alive"]:
-        return (
+        sentence = (
             f"At {money(rev)}/mo growing {growth:g}%/mo, revenue passes "
             f"{money(cost)}/mo costs in month {be} — inside your {runway_txt} of runway. "
             f"Hold the growth rate and you reach break-even before the cash runs out."
         )
+        flip = result["flip_growth_pct_pretax"]
+        if flip is not None and flip > 0:
+            after = result["flip_growth_pct_after_tax"]
+            sentence += (
+                f" The verdict flips to default dead below {flip:.1f}%/mo growth "
+                f"(below {after:.1f}%/mo on an after-tax basis) — that is the line to watch."
+            )
+        return sentence
     if be is None:
         cause = "revenue is flat or shrinking, so it never reaches costs"
     else:
         cause = f"even at {growth:g}%/mo growth, costs are not reached until month {be} — past your {runway_txt} of runway"
-    return (
+    sentence = (
         f"Costs of {money(cost)}/mo exceed revenue of {money(rev)}/mo and {cause}. "
         f"Cut costs, raise price, or grow revenue now — cash runs out in {runway_txt}."
     )
+    flip = result["flip_growth_pct_pretax"]
+    if flip is not None:
+        after = result["flip_growth_pct_after_tax"]
+        sentence += (
+            f" Growing about {flip:.1f}%/mo (or {after:.1f}%/mo after tax) or more would "
+            f"pull break-even inside the runway and flip you to default alive."
+        )
+    return sentence
 
 
 def render(result: dict) -> str:
@@ -221,6 +279,10 @@ def render(result: dict) -> str:
         f"({i['tax_rate']:.0%} of revenue)"
     )
     lines.append(f"Runway (after tax):  {months_str(result['runway_months_after_tax'])}")
+    lines.append(
+        f"Flip growth rate:    {growth_pct_str(result['flip_growth_pct_pretax'])}/mo (pre-tax) · "
+        f"{growth_pct_str(result['flip_growth_pct_after_tax'])}/mo after tax"
+    )
     lines.append("-" * 56)
     lines.append(f"Verdict: {result['verdict']}")
     lines.append(result["verdict_sentence"])

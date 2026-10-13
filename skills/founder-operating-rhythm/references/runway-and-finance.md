@@ -34,6 +34,8 @@ The test is deliberately blunt. It is a *forecast*, not a verdict on the idea:
 
 `scripts/runway.py` computes exactly this. The reason it matters: the number is honest about *time*, and time is what converts a solvable problem into a forced one. A business that is default dead with 18 months of runway has a plan; the same business discovered at 3 months has a crisis. Run the test while there is still room to act.
 
+**The flip rate turns the verdict into a target.** Because break-even moves earlier as growth rises, there is a minimum monthly growth rate at which the test flips from default dead to default alive. `scripts/runway.py` reports it. At $120k cash, $8k revenue, and $14k costs, the flip is about **2.8%/mo** against the 20-month pre-tax runway — and about **4.0%/mo** against the 14.3-month after-tax runway, a higher bar because the tax set-aside shrinks the revenue that reaches the cost line. Always quote the rate with the basis it is measured against, and treat it as the number to hold, not as a forecast.
+
 **When you are default dead, the four levers** are: raise revenue (price, retention — usually the fastest), cut costs, raise money, or accept a smaller business on purpose. Notice that "work harder" is not on the list; it rarely moves the arithmetic in time.
 
 ## 3. The tax set-aside habit

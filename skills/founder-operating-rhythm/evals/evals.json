@@ -16,11 +16,12 @@
     {
       "id": 2,
       "prompt": "Quick check — I've got $120k in the bank, we're doing about $8k MRR and spending around $14k a month, revenue's growing maybe 6% a month. Am I going to make it or should I be worried?",
-      "expected_output": "Runs scripts/runway.py with the given inputs and reports net monthly burn, runway in months, the break-even month, a tax set-aside figure, and an explicit default alive / default dead verdict, with the plain-language sentence. Should also show the flat/declining case (e.g. --growth 0 or negative) so the downside is visible, and log the result to runway.csv. Should not present the projection as a promise.",
+      "expected_output": "Runs scripts/runway.py with the given inputs and reports net monthly burn, runway in months, the break-even month, a tax set-aside figure, the growth rate at which the verdict flips (with its pre-tax or after-tax basis stated), and an explicit default alive / default dead verdict, with the plain-language sentence. Should also show the flat/declining case (e.g. --growth 0 or negative) so the downside is visible, and log the result to runway.csv. Should not present the projection as a promise.",
       "files": [],
       "expectations": [
         "Runs scripts/runway.py and reports runway months, break-even month, and the set-aside",
         "States a default alive / default dead verdict in plain language",
+        "Reports the growth rate at which the verdict flips (the minimum monthly growth to stay default alive), with the runway basis stated",
         "Handles and shows the flat/declining growth case without a divide-by-zero error",
         "Frames the output as a planning estimate, not a promise"
       ]
